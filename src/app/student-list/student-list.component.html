@@ -1,0 +1,42 @@
+<h4>Student List</h4>
+<input
+  type="text"
+  name="searchname"
+  [(ngModel)]="searchname"
+  placeholder="Enter Name"
+/>
+<button (click)="searchStudent(searchname)" class="btn btn-dark">Search</button>
+<div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>Age</th>
+        <th>action</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of searchData; let i = index" appHighlight>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name | uppercase }}</td>
+        <td>{{ student.email | lowercase }}</td>
+        <td>{{ student.course | titlecase }}</td>
+        <td>{{ student.age | ageCategory }}</td>
+        <td>
+          <button (click)="DeleteStudent(student.id)">
+            Delete
+          </button>
+        </td>
+        <td>
+          <button (click)="EditStudent(student.id)">
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
